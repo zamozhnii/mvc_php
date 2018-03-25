@@ -39,6 +39,18 @@ if(isset($uriParts[3]) && is_numeric($uriParts[3])) {
 } 
 
 $action = isset($uriParts[3]) && $uriParts[3] !== '' && is_string($uriParts[3]) ? $uriParts[3] : 'index';
+
+$actionParts = explode('-', $action);
+for($i = 1; $i < count($actionParts); $i++) {
+    if (!isset($actionParts[$i])) {
+        continue;
+    }
+
+    $actionParts[$i] = ucfirst($actionParts[$i]);
+}
+
+$action = implode('', $actionParts);
+
 $action = sprintf('%sAction', $action);
 if(!$id) {
     $id = isset($uriParts[4]) && is_numeric($uriParts[4]) ? $uriParts[4] : false;

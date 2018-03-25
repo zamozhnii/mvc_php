@@ -31,14 +31,19 @@ abstract class BaseModel
         return $this->db->select($sql, ['id' => $id], DBDriver::FETCH_ONE);
     }
 
-    public function add(array $params)
+    public function add(array $params, $needValidation = true)
     {
-        $this->validator->execute($params);
+        if($needValidation) {
+            $this->validator->execute($params);
         
-        if(!$this->validator->success) {
-            throw new ModelException($this->validator->errors);
-            $this->validator->errors;
+            if(!$this->validator->success) {
+                //throw new ModelException($this->validator->errors);
+                $this->validator->errors;
+            }
+
+            $params = $this->validator->clean;
         }
+        
 
         return $this->db->insert($this->table, $params);
     }

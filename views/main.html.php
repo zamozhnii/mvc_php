@@ -7,11 +7,16 @@
     <title><?=$title?></title>
 </head>
 <body>
-    <h1>Базовый шаблон</h1>
-    <hr/>
-    <p>
-        <?=$content?>
-    </p>
-    <hr/>
+    <div id="top-panel">
+        <div class="base-container">
+            <span class="inline-box signin"><a href="#">SignIn</a> / <a href="./user/sign-up/">SignUp</a></span>
+        </div>
+    </div>
+    <div class="base-container">
+        <h1><?=$title?></h1>
+        <hr/>
+        <div class="content"><?=$content?></div>
+        <hr/>
+    </div>
 </body>
 </html>
