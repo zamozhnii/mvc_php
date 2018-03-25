@@ -1,0 +1,13 @@
+Options +FollowSymLinks
+#Options -Indexes
+
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^http://localhost:8888/$ [NC]
+RewriteRule ^(.*)$ http://localhost:8888/$1 [L,R=301]
+
+RewriteCond $1 !^(index\.php|user_guide|uploads/.*|favicon\.ico|favicon\.png|captcha/.*|application/modules/.*/templates|templates|js|robots\.txt|application/controllers/install/images/.*)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php [L]
+#RewriteRule ^(.*)$ index.php?$1 [L]
